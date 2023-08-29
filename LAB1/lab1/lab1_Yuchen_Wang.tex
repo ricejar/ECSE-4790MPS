@@ -1,0 +1,83 @@
+\documentclass[12pt,titlepage]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{enumitem}
+\usepackage{indentfirst}
+\usepackage{wasysym}
+\usepackage{graphicx}
+\usepackage{siunitx}
+\usepackage{float}
+\usepackage[margin=1in]{geometry}
+\usepackage[onehalfspacing]{setspace}
+
+
+
+\title{ECSE 4770 Lab0 report}
+\author{Yuchen Wang}
+\date{September 2021}
+
+\begin{document}
+\maketitle
+
+
+\begin{enumerate}[noitemsep]
+\item \textbf{Introduction}\\
+This lab is aimed at helping student install the environment for iVerilog and gtkwave. After finishing the installation, students are supposed to test a D Flip-Flop implemented in iVerilog and use a test branch to test whether the is works correctly as a D Flip-Flop. The code and test branch are as followed.\\
+
+
+\item \textbf{D Flip-Flop code}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6,clip]{dff}
+	\caption{dff.v D flip-flop code}
+  \end{figure}
+  In the code, the main parts only runs when the reset is set to 1 or clk is set to 1. It should works as a D flip-flop.
+  \clearpage
+
+
+\item \textbf{Test branch code}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.57,clip]{dfftb}
+	\caption{dff\_tb.v D flip-flop test branch code}
+  \end{figure}
+  The code works as a test branch for the dff.v in the previous part.\\
+  After initializing the output waveforms, the test branch first reset the flip-flop. Secondly, it turn off the reset and set the input d to 1. Lastly, the clk is set to 1 which trigger a rising edge in clk.\\
+  The total 3 test part includes 3 different case for the flip-flop to test.
+  \clearpage
+
+\item \textbf{The iVerilog output}
+    \begin{figure}[H]
+	   \centering
+	   \includegraphics[scale=0.7,clip]{ivl}
+	   \caption{The iVerilog output of the simulation result}
+    \end{figure}
+    The output of iVerilog is in the picture.
+    \begin{itemize}
+      \item After initialization, d is set to unsure, q is set to 0 and q\_b is 1.
+      \item In the second step, d is set to 1 and reset is unable, the output is not changed still 0.
+      \item In the third step, when clk is toggled from 0 to 1, d is changed from 1 to 0.
+
+    \end{itemize}
+      The D flip-flop works properly.
+      \clearpage
+
+\item \textbf{The gtkwave result}
+    \begin{figure}[H]
+	   \centering
+	   \includegraphics[scale=0.6,clip]{gtkwave}
+	   \caption{Layout of Inverter}
+    \end{figure}
+    As described in the previous part, the output waveform works the same as iVerilog output. First, second and third second is correspond to the three test cases in the test branch. input d is x, 1, 1 and output q is 0,0,1 for three test function. the output q changed only when the clk is switched from 0 to 1.\\
+
+\item \textbf{Conclusion}\\
+A D flip-flop captures the input d when the clk has an rising edge and remain the output q to be d at the caputured time.\\
+As is tested in the case, the code of the D flip-flop works properly. And the gtk waveform show the input and out put pulse of the test cases. It also works as expected.\\
+For the installation, the X server on windows is little confusing, on my laptop it always need to be launched before student run the waveform.
+
+
+\end{enumerate}
+
+\end{document} 
